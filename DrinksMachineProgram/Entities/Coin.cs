@@ -25,7 +25,10 @@ namespace DrinksMachineProgram.Entities
         public short QuantityAvailable { get; set; }
 
         [NotMapped]
-        public short QuantityReserved { get; set; }
+        public short QuantityAdded { get; set; }
+
+        [NotMapped]
+        public short QuantityRemoved{ get; set; }
 
         #endregion Properties
 

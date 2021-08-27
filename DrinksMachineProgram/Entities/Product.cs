@@ -17,7 +17,7 @@ namespace DrinksMachineProgram.Entities
 
         [Required(ErrorMessage = "The cost is required.")]
         [Range(0, short.MaxValue, ErrorMessage = "The cost must be greater than 0")]
-        public short Cost { get; set; }
+        public decimal Cost { get; set; }
 
         [Required(ErrorMessage = "The quantity available is required.")]
         [Range(0, short.MaxValue, ErrorMessage = "The quantity must be greater than 0")]

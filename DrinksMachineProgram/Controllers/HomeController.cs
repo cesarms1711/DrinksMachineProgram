@@ -85,7 +85,9 @@ namespace DrinksMachineProgram.Controllers
                     .ForEach(p => ProductsBL.Instance.Edit(p.Product));
 
                 order.Coins
-                    .Where(c => c.Coin.QuantityReserved > 0)
+                    .Where(c => 
+                        c.Coin.QuantityAdded > 0 ||
+                        c.Coin.QuantityRemoved > 0)
                     .ToList()
                     .ForEach(c => CoinsBL.Instance.Edit(c.Coin));
 
@@ -196,7 +198,7 @@ namespace DrinksMachineProgram.Controllers
             order.Coins.ForEach(orderCoin =>
             {
                 orderCoin.Coin.QuantityAvailable += orderCoin.Quantity;
-                orderCoin.Coin.QuantityReserved = orderCoin.Quantity;
+                orderCoin.Coin.QuantityAdded = orderCoin.Quantity;
                 orderCoin.Quantity = 0;
 
                 if (orderCoin.Coin.QuantityAvailable > 0 &&
@@ -208,6 +210,7 @@ namespace DrinksMachineProgram.Controllers
                         change -= orderCoin.Coin.Value;
 
                         orderCoin.Coin.QuantityAvailable--;
+                        orderCoin.Coin.QuantityRemoved++;
                         orderCoin.Quantity++;
                     }
                     while (orderCoin.Coin.QuantityAvailable > 0 &&
@@ -233,17 +236,19 @@ namespace DrinksMachineProgram.Controllers
         {
             order.Coins.ForEach(orderCoin =>
             {
-                orderCoin.Quantity = orderCoin.Coin.QuantityReserved;
-                orderCoin.Coin.QuantityAvailable -= orderCoin.Quantity;
+                orderCoin.Quantity = orderCoin.Coin.QuantityAdded;
+
+                orderCoin.Coin.QuantityAvailable -= orderCoin.Coin.QuantityAdded;
+                orderCoin.Coin.QuantityAvailable += orderCoin.Coin.QuantityRemoved;
             });
         }
 
         private void RestoreProducts(ref OrderModel order)
         {
-            order.Coins.ForEach(orderCoin =>
+            order.Products.ForEach(orderProduct =>
             {
-                orderCoin.Quantity = orderCoin.Coin.QuantityReserved;
-                orderCoin.Coin.QuantityAvailable -= orderCoin.Quantity;
+                orderProduct.Quantity = orderProduct.Quantity;
+                orderProduct.Product.QuantityAvailable += orderProduct.Quantity;
             });
         }
 

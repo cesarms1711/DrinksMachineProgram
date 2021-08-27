@@ -68,7 +68,7 @@ function calculateTotal() {
 
     $("[data-field='product'] input").each(function () {
         let row = $(this).parent().data("row");
-        let cost = parseInt($(`[name="Products[${row}].Product.Cost"]`).val());
+        let cost = parseFloat($(`[name="Products[${row}].Product.Cost"]`).val());
         let productQuantity = parseInt($(this).val());
 
         total += productQuantity * cost;
