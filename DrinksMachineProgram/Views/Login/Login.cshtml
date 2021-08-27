@@ -1,0 +1,59 @@
+﻿@using DrinksMachineProgram
+@model LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Drinks Machine Program</title>
+    <!-- Libraries CSS Files -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.all.min.css" />
+    <link rel="stylesheet" href="~/lib/animate/animate.min.css">
+</head>
+<body class="h-100">
+    <div class="container-fluid h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-md-auto">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="text-center">Login User: admin Pass: ZyxWv@98765</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="@Url.Action("Login", "Login")" method="post">
+                            @Html.AntiForgeryToken()
+                            @Html.GetValidationSummary()
+                            <div class="row mb-2" data-field="true">
+                                @Html.GetLabelFor(m => m.UserName, "col-md-5")
+                                <div class="col-md-7">
+                                    @Html.GetEditorFor(m => m.UserName)
+                                </div>
+                            </div>
+                            <div class="row mb-2" data-field="true">
+                                @Html.GetLabelFor(m => m.Password, "col-md-5")
+                                <div class="col-md-7">
+                                    @Html.GetPasswordFor(m => m.Password)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="offset-md-5 col-md-7">
+                                    <input type="submit" value="Login" class="btn btn-primary mt-3" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript Libraries -->
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/common-functions-forms.js"></script>
+</body>
+</html>

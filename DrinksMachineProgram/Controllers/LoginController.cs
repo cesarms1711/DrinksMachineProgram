@@ -6,7 +6,6 @@ using DrinksMachineProgram.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +42,7 @@ namespace DrinksMachineProgram.Controllers
 
             ViewData["ReturnUrl"] = returnUrl;
 
-            var login = new LoginModel();
+            LoginModel login = new LoginModel();
 
             return View(login);
         }
@@ -60,10 +59,10 @@ namespace DrinksMachineProgram.Controllers
 
             if (ModelState.IsValid)
             {
-                var cryptoProvider = new MD5CryptoServiceProvider();
-                var hashCode = cryptoProvider.ComputeHash(Encoding.ASCII.GetBytes(login.Password));
+                MD5CryptoServiceProvider cryptoProvider = new MD5CryptoServiceProvider();
+                byte[] hashCode = cryptoProvider.ComputeHash(Encoding.ASCII.GetBytes(login.Password));
 
-                var user = UsersBL
+                Entities.User user = UsersBL
                     .Instance
                     .Detail(login.UserName, hashCode);
 
@@ -83,7 +82,7 @@ namespace DrinksMachineProgram.Controllers
                     return Redirect(returnUrl);
                 }
 
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(SettingsController.Index), "Settings");
             }
 
             return View(login);

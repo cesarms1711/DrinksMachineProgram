@@ -1,0 +1,40 @@
+﻿@using DrinksMachineProgram.Entities
+@model User
+
+<div class="modal-header">
+    <h4 class="modal-title">Detail of the User</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="row mb-2">
+            @Html.GetLabelFor(model => model.Id, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetDisplayFor(model => model.Id)
+            </div>
+        </div>
+        <div class="row mb-2">
+            @Html.GetLabelFor(model => model.UserName, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetDisplayFor(model => model.UserName)
+            </div>
+        </div>
+        <div class="row mb-2">
+            @Html.GetLabelFor(model => model.FirstName, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetDisplayFor(model => model.FirstName)
+            </div>
+        </div>
+        <div class="row mb-2">
+            @Html.GetLabelFor(model => model.LastName, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetDisplayFor(model => model.LastName)
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger btn-sm" data-bs-dismiss="modal" aria-hidden="true">
+        <span class="fa fa-ban"></span> Cancel
+    </button>
+</div>

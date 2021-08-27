@@ -1,0 +1,51 @@
+﻿@using DrinksMachineProgram.Entities
+@model User
+
+<div class="modal-header">
+    <h4 class="modal-title">Edit User</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+    <form id="DataForm" action="@Url.Action("Edit", "Users")">
+        @Html.GetValidationSummary()
+        @Html.HiddenFor(model => model.Id)
+        <div class="row mb-2" data-input="true">
+            @Html.GetLabelFor(model => model.UserName, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetEditorFor(model => model.UserName)
+            </div>
+        </div>
+        <div class="row mb-2" data-input="true">
+            @Html.GetLabelFor(model => model.FirstName, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetEditorFor(model => model.FirstName)
+            </div>
+        </div>
+        <div class="row mb-2" data-input="true">
+            @Html.GetLabelFor(model => model.LastName, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetEditorFor(model => model.LastName)
+            </div>
+        </div>
+        <div class="row mb-2" data-input="true">
+            @Html.GetLabelFor(model => model.Password, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetPasswordFor(model => model.Password)
+            </div>
+        </div>
+        <div class="row mb-2" data-input="true">
+            @Html.GetLabelFor(model => model.PasswordConfirmation, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetPasswordFor(model => model.PasswordConfirmation)
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button id="SaveButton" class="btn btn-primary btn-sm" type="button">
+        <span class="fa fa-save"></span> Save
+    </button>
+    <button class="btn btn-danger btn-sm" data-bs-dismiss="modal" aria-hidden="true">
+        <span class="fa fa-ban"></span> Cancel
+    </button>
+</div>

@@ -18,8 +18,8 @@ function loadTable(urlTable, tableSelector) {
         contentType: "application/json",
         success: function (response) {
 
-            if (response.success) {
-                $(tableSelector).html(response.data);
+            if (response.Success) {
+                $(tableSelector).html(response.Data);
 
                 $(`${tableSelector} table`).DataTable({
                     responsive: true,
@@ -29,12 +29,11 @@ function loadTable(urlTable, tableSelector) {
             } else {
                 $(tableSelector).empty();
 
-                bootbox.alert({
-                    message: response.message,
-                    buttons: { ok: { label: "OK", className: "btn btn-primary", callback: function () { } } },
-                    size: "small",
-                    centerVertical: true
-                });
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: response.Message,
+                })
             }
 
         }
@@ -50,11 +49,11 @@ function onlySaveData(data, dataForm, callback) {
         data: data,
         success: function (response) {
 
-            if (response.success) {
+            if (response.Success) {
                 Swal.fire({
                     icon: "success",
                     title: "Success...",
-                    text: response.successMessage,
+                    text: response.SuccessMessage,
                 })
 
                 callback();
@@ -62,7 +61,7 @@ function onlySaveData(data, dataForm, callback) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: response.errorMessage,
+                    text: response.ErrorMessage,
                 })
             }
 
@@ -99,11 +98,11 @@ function saveData(dataForm, modalWindow, callback, callbackParameters) {
 
 function processResponse(response, dataForm, modalWindow, callback, callbackParameters) {
 
-    if (response.success) {
+    if (response.Success) {
         Swal.fire({
             icon: "success",
             title: "Success...",
-            text: response.successMessage,
+            text: response.SuccessMessage,
         })
 
         modalWindow.modal("hide");
@@ -112,16 +111,16 @@ function processResponse(response, dataForm, modalWindow, callback, callbackPara
     } else {
         dataForm.children("[data-input='true']").removeClass("has-error");
 
-        showValidationSummary(response.errorList, dataForm);
+        showValidationSummary(response.ErrorList, dataForm);
     }
 
 }
 
 function processSimpleResponse(response, callback) {
 
-    if (response.success) {
+    if (response.Success) {
         bootbox.alert({
-            message: response.successMessage,
+            message: response.SuccessMessage,
             size: "small",
             centerVertical: true
         });
@@ -131,7 +130,7 @@ function processSimpleResponse(response, callback) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: response.errorMessage,
+            text: response.ErrorMessage,
         })
     }
 
@@ -162,11 +161,11 @@ function applyProcess(action, data, confirmationMessage, yesText, cancelText, ca
                 data: data,
                 success: function (response) {
 
-                    if (response.success) {
+                    if (response.Success) {
                         Swal.fire({
                             icon: "success",
                             title: "Success...",
-                            text: response.successMessage,
+                            text: response.SuccessMessage,
                         }).then(() => {
                             callback(callbackParameters);
                         });
@@ -174,7 +173,7 @@ function applyProcess(action, data, confirmationMessage, yesText, cancelText, ca
                         Swal.fire({
                             icon: "error",
                             title: "Oops...",
-                            text: response.errorMessage,
+                            text: response.ErrorMessage,
                         })
                     }
 
@@ -189,6 +188,8 @@ function showValidationSummary(errorList, dataForm) {
     var $validationSummary = dataForm.children("#ValidationSummary");
 
     $validationSummary.empty();
+
+    $(".invalid-feedback").remove();
 
     $.each(errorList, function (index, error) {
         var inputValidated = dataForm.find(`#${error.property}`);

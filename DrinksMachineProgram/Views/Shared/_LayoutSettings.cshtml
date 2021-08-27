@@ -25,20 +25,25 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMainMenu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navMainMenu">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <div class="collapse navbar-collapse">
+                    <ul id="navMainMenu" class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" href="@Url.Action("List", "Products")">
-                                <i class="fas fa-beer"></i> Products
+                            <a id="linkProducts" class="nav-link" href="@Url.Action("Index", "Home")">
+                                <i class="fas fa-home"></i> Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("List", "Coins")">
+                            <a id="linkProducts" class="nav-link" href="@Url.Action("List", "Products")">
+                                <i class="fas fa-cubes"></i> Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="linkCoins" class="nav-link" href="@Url.Action("List", "Coins")">
                                 <i class="fas fa-coins"></i> Coins
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#@Url.Action("List", "Users")">
+                            <a id="linkUsers" class="nav-link" href="@Url.Action("List", "Users")">
                                 <i class="fas fa-users"></i> Users
                             </a>
                         </li>

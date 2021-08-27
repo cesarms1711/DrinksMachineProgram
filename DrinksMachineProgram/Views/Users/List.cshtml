@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "List of Products";
+    ViewBag.Title = "List of Users";
     Layout = "~/Views/Shared/_LayoutSettings.cshtml";
 }
 
@@ -17,7 +17,7 @@
             </div>
             <div class="card-footer text-right">
                 <button id="btnCreate" class="btn btn-success btn-sm" type="button" role="button">
-                    <i class="fa fa-plus"></i> New Product
+                    <i class="fa fa-plus"></i> New User
                 </button>
             </div>
         </div>
@@ -39,11 +39,11 @@
         $(function () {
             dataForm = form();
 
-            dataForm.tableUrl = "@Url.Action("Table", "Products")";
-            dataForm.createUrl = "@Url.Action("Create", "Products")";
-            dataForm.editUrl = "@Url.Action("Edit", "Products")";
-            dataForm.detailUrl = "@Url.Action("Detail", "Products")";
-            dataForm.deleteUrl = "@Url.Action("Delete", "Products")";
+            dataForm.tableUrl = "@Url.Action("Table", "Users")";
+            dataForm.createUrl = "@Url.Action("Create", "Users")";
+            dataForm.editUrl = "@Url.Action("Edit", "Users")";
+            dataForm.detailUrl = "@Url.Action("Detail", "Users")";
+            dataForm.deleteUrl = "@Url.Action("Delete", "Users")";
 
             dataForm.deleteMessage = "Are you sure you want to delete the record?";
             dataForm.yesMessage = "Yes";
@@ -56,7 +56,7 @@
             });
 
             $("#navMainMenu li a").removeClass("active");
-            $("#linkProducts").addClass("active");
+            $("#linkUsers").addClass("active");
         });
 
     </script>

@@ -64,7 +64,7 @@ namespace DrinksMachineProgram.Controllers
         // GET: /Users/Create
         public ActionResult Create()
         {
-            return PartialView("_Create");
+            return PartialView("_Create", new User());
         }
 
         // POST: /Users/Create

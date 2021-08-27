@@ -1,19 +1,23 @@
 using DrinksMachineProgram.Authentication;
 using DrinksMachineProgram.BusinessLayer;
 using DrinksMachineProgram.Entities;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Newtonsoft.Json.Serialization;
+
 using System.Security.Claims;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DrinksMachineProgram
 {
@@ -72,6 +76,16 @@ namespace DrinksMachineProgram
                 Value = 0.25m,
                 QuantityAvailable = 25
             });
+
+            MD5CryptoServiceProvider cryptoProvider = new MD5CryptoServiceProvider();
+
+            UsersBL.Instance.Create(new User
+            {
+                UserName = "admin",
+                FirstName = "Admin",
+                LastName = "Admin",
+                PasswordHash =  cryptoProvider.ComputeHash(Encoding.ASCII.GetBytes("ZyxWv@98765"))
+            });
         }
 
         public IConfiguration Configuration { get; }
@@ -90,6 +104,19 @@ namespace DrinksMachineProgram
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddMvc(options => options.Filters.Add(
+                 new AuthorizeFilter(
+                     new AuthorizationPolicyBuilder()
+                         .RequireAuthenticatedUser()
+                         .Build())))
+             .AddJsonOptions(options => {
+                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                 options.JsonSerializerOptions.DictionaryKeyPolicy = null;
+
+             })
+             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
 
             services.AddControllersWithViews();
 
@@ -113,7 +140,6 @@ namespace DrinksMachineProgram
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ILoginManager, LoginManager>();
             services.AddScoped<IUserSession, UserSession>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -131,7 +157,8 @@ namespace DrinksMachineProgram
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
