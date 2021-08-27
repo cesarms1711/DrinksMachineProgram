@@ -40,35 +40,6 @@ function loadTable(urlTable, tableSelector) {
     });
 }
 
-function onlySaveData(data, dataForm, callback) {
-    $.ajax({
-        type: "POST",
-        url: dataForm.attr("action"),
-        dataType: "json",
-        contentType: "application/json",
-        data: data,
-        success: function (response) {
-
-            if (response.Success) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Success...",
-                    text: response.SuccessMessage,
-                })
-
-                callback();
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: response.ErrorMessage,
-                })
-            }
-
-        }
-    });
-}
-
 function getFormData(form) {
     var serializedArray = form.serializeArray();
     var json = {};

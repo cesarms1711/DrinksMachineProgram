@@ -1,0 +1,72 @@
+﻿@using DrinksMachineProgram.Entities
+@using DrinksMachineProgram.Models
+@using DrinksMachineProgram.Resources;
+@model OrderModel
+
+<div class="card">
+    <div class="card-header fw-bold fs-4">Order Summay</div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <h6 class="card-title mb-4">@TextResources.TitlePurchasedProducts</h6>
+            @for (int i = 0; i < Model.Products.Count; i++)
+            {
+                if (Model.Products[i].Quantity == 0) continue;
+                Product product = Model.Products[i].Product;
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label fw-bold text-uppercase">@product.Name</label>
+                    </div>
+                    <div class="col">
+                        @Html.GetDisplayFor(model => model.Products[i].Quantity)
+                    </div>
+                </div>
+            }
+        </li>
+        <li class="list-group-item">
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label fw-bold">Total: </label>
+                </div>
+                <div class="col">
+                    @Html.GetDisplayFor(model => model.Total)
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label fw-bold">Pay: </label>
+                </div>
+                <div class="col">
+                    @Html.GetDisplayFor(model => model.Pay)
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label fw-bold">Change: </label>
+                </div>
+                <div class="col">
+                    @Html.GetDisplayFor(model => model.Change)
+                </div>
+            </div>
+        </li>
+        @{ bool changeNeeded = Model.Coins.Any(c => c.Quantity > 0); }
+        @if (changeNeeded)
+        {
+            <li class="list-group-item">
+                <h6 class="card-title mb-4">@TextResources.TitleChange</h6>
+                @for (int i = 0; i < Model.Coins.Count; i++)
+                {
+                    if (Model.Coins[i].Quantity == 0) continue;
+                    Coin coin = Model.Coins[i].Coin;
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-label fw-bold text-uppercase">@coin.Name</label>
+                        </div>
+                        <div class="col">
+                            @Html.GetDisplayFor(model => model.Coins[i].Quantity)
+                        </div>
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+</div>

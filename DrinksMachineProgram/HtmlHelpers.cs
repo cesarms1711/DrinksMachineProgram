@@ -53,16 +53,10 @@ namespace DrinksMachineProgram
             this IHtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TValue>> expression)
         {
-            ModelExpressionProvider modelExpressionProvider = (ModelExpressionProvider) htmlHelper.ViewContext.HttpContext.RequestServices.GetService(typeof(IModelExpressionProvider));
-            ModelMetadata metaData = modelExpressionProvider
-                .CreateModelExpression(htmlHelper.ViewData, expression)
-                .Metadata;
-
             object htmlAttributes = new
             {
                 @class = "form-control-plaintext",
-                @readonly = "true",
-                id = metaData.PropertyName
+                @readonly = "true"
             };
 
             return htmlHelper.TextBoxFor(expression, htmlAttributes);
@@ -106,7 +100,8 @@ namespace DrinksMachineProgram
             string id = "",
             string placeHolder = "",
             string dataType = "",
-            string classes = "")
+            string classes = "",
+            string onChange = "")
         {
             classes += " form-control";
 
@@ -128,7 +123,8 @@ namespace DrinksMachineProgram
                     id,
                     @class = classes,
                     placeholder = placeHolder,
-                    data_type = dataType
+                    data_type = dataType,
+                    onChange = onChange
                 }
             };
 

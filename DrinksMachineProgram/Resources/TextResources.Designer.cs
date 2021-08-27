@@ -88,6 +88,15 @@ namespace DrinksMachineProgram.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Drink is sold out, your purchase cannot be processed..
+        /// </summary>
+        public static string MessageErrorDrinkSoldOut {
+            get {
+                return ResourceManager.GetString("MessageErrorDrinkSoldOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The user name or password are incorrect..
         /// </summary>
         public static string MessageErrorLoginIncorrect {
@@ -97,7 +106,16 @@ namespace DrinksMachineProgram.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a &quot;The record does not exist.&quot;.
+        ///   Busca una cadena traducida similar a There was an error with the order..
+        /// </summary>
+        public static string MessageErrorOrder {
+            get {
+                return ResourceManager.GetString("MessageErrorOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The record does not exist..
         /// </summary>
         public static string MessageErrorRecordDoesNotExist {
             get {
@@ -160,6 +178,24 @@ namespace DrinksMachineProgram.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Not enough money to pay for drinks..
+        /// </summary>
+        public static string MessageNotEnoughMoney {
+            get {
+                return ResourceManager.GetString("MessageNotEnoughMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Not sufficient change in the inventory..
+        /// </summary>
+        public static string MessageNotSufficientChange {
+            get {
+                return ResourceManager.GetString("MessageNotSufficientChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Record added successfully..
         /// </summary>
         public static string MessageSucccessRecordAdded {
@@ -180,18 +216,36 @@ namespace DrinksMachineProgram.Resources {
         /// <summary>
         ///   Busca una cadena traducida similar a List generated..
         /// </summary>
-        public static string MessajeSuccessListGenerated {
+        public static string MessageSuccessListGenerated {
             get {
-                return ResourceManager.GetString("MessajeSuccessListGenerated", resourceCulture);
+                return ResourceManager.GetString("MessageSuccessListGenerated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Order complete..
+        /// </summary>
+        public static string MessageSuccessOrder {
+            get {
+                return ResourceManager.GetString("MessageSuccessOrder", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Busca una cadena traducida similar a Record deleted successfully..
         /// </summary>
-        public static string MessajeSuccessRecordDeleted {
+        public static string MessageSuccessRecordDeleted {
             get {
-                return ResourceManager.GetString("MessajeSuccessRecordDeleted", resourceCulture);
+                return ResourceManager.GetString("MessageSuccessRecordDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CHANGE.
+        /// </summary>
+        public static string TitleChange {
+            get {
+                return ResourceManager.GetString("TitleChange", resourceCulture);
             }
         }
         
@@ -205,11 +259,29 @@ namespace DrinksMachineProgram.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Order Summary.
+        /// </summary>
+        public static string TitleOrderSummary {
+            get {
+                return ResourceManager.GetString("TitleOrderSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a PRODUCTS INFORMATION.
         /// </summary>
         public static string TitleProductsInformation {
             get {
                 return ResourceManager.GetString("TitleProductsInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a PURCHASED PRODUCTS.
+        /// </summary>
+        public static string TitlePurchasedProducts {
+            get {
+                return ResourceManager.GetString("TitlePurchasedProducts", resourceCulture);
             }
         }
     }

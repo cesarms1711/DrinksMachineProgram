@@ -7,22 +7,24 @@
     ViewData["Title"] = "Home Page";
 }
 
-<form action="@Url.Action("GetDrinks", "Home" )" method="post" role="form">
-    @Html.AntiForgeryToken()
+<form id="DataForm" action="@Url.Action("GetDrinks", "Home" )" method="post" role="form">
     <div class="card">
         <div class="card-header fw-bold fs-3">Get a Drink!!</div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
                 <h5 class="card-title mb-4">@TextResources.TitleCoinsInformation</h5>
                 <div class="row">
-                    @for (var i = 0; i < Model.Coins.Count; i++)
+                    @for (int i = 0; i < Model.Coins.Count; i++)
                     {
+                        @Html.HiddenFor(model => model.Coins[i].Coin.Id)
                         @Html.HiddenFor(model => model.Coins[i].Coin.Name)
+                        @Html.HiddenFor(model => model.Coins[i].Coin.Value)
+                        @Html.HiddenFor(model => model.Coins[i].Coin.QuantityAvailable)
                         Coin coin = Model.Coins[i].Coin;
-                    <div class="col-sm-4 col-md-3" data-field="coin">
-                        <label class="form-label fw-bold text-uppercase">@coin.Name</label>
-                        @Html.GetEditorFor(model => model.Coins[i].Quantity, classes: "border-dark border-4")
-                    </div>                        
+                        <div class="col-sm-4 col-md-3" data-field="coin" data-row="@i">
+                            <label class="form-label fw-bold text-uppercase">@coin.Name</label>
+                            @Html.GetEditorFor(model => model.Coins[i].Quantity, classes: "border-dark border-4")
+                        </div>
                     }
                 </div>
             </li>
@@ -30,19 +32,21 @@
                 <h5 class="card-title mb-4">@TextResources.TitleProductsInformation</h5>
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
-                        @for (var i = 0; i < Model.Products.Count; i++)
+                        @for (int i = 0; i < Model.Products.Count; i++)
                         {
-                            @Html.HiddenFor(model => model.Products[i].Product.Name, htmlAttributes: new { @class = "cssclass" });
+                            @Html.HiddenFor(model => model.Products[i].Product.Id)
+                            @Html.HiddenFor(model => model.Products[i].Product.Name)
                             @Html.HiddenFor(model => model.Products[i].Product.Cost)
                             @Html.HiddenFor(model => model.Products[i].Product.QuantityAvailable)
                             Product product = Model.Products[i].Product;
                             <div class="row mb-3">
                                 <div class="col">
                                     <label class="form-label fw-bold text-uppercase">@product.Name</label>
-                                    <p>@(product.QuantityAvailable) drink available, Cost = @(product.Cost)</p>
+                                    <p>
+                                        <span name="@($"Products[{i}].QuantityAvailable")">@(product.QuantityAvailable)</span> drinks available, Cost = @(product.Cost)
+                                    </p>
                                 </div>
                                 <div class="col" data-field="product" data-row="@i">
-
                                     @Html.GetEditorFor(model => model.Products[i].Quantity, classes: "h-100 border-dark border-4")
                                 </div>
                             </div>
@@ -58,7 +62,7 @@
             </li>
         </ul>
         <div class="card-footer text-end">
-            <button id="btnGetDrinks" type="submit" class="btn btn-primary" disabled>Get Drinks</button>
+            <button id="btnGetDrinks" type="button" class="btn btn-primary" disabled>Get Drinks</button>
         </div>
     </div>
 </form>

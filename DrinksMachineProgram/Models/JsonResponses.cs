@@ -11,13 +11,15 @@ namespace DrinksMachineProgram
 
         public static JsonResult GetSuccess(
             string message,
-            string data = "")
+            string data = "",
+            object dataObject = null)
         {
             var value = new
             {
                 Success = true,
                 SuccessMessage = message,
-                Data = data
+                Data = data,
+                DataObject = dataObject
             };
 
             return new JsonResult(value);

@@ -48,7 +48,9 @@ namespace DrinksMachineProgram.BusinessLayer
 
         public List<Coin> List()
         {
-            return Coins;
+            return Coins
+                .OrderByDescending(c => c.Value)
+                .ToList();
         }
 
         public Coin Detail(short id)

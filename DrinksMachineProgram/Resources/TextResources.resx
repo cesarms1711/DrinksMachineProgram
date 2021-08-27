@@ -126,11 +126,17 @@
   <data name="MessageErrorDeletingRecord" xml:space="preserve">
     <value>An error occurred while trying to delete the record.</value>
   </data>
+  <data name="MessageErrorDrinkSoldOut" xml:space="preserve">
+    <value>Drink is sold out, your purchase cannot be processed.</value>
+  </data>
   <data name="MessageErrorLoginIncorrect" xml:space="preserve">
     <value>The user name or password are incorrect.</value>
   </data>
+  <data name="MessageErrorOrder" xml:space="preserve">
+    <value>There was an error with the order.</value>
+  </data>
   <data name="MessageErrorRecordDoesNotExist" xml:space="preserve">
-    <value>"The record does not exist."</value>
+    <value>The record does not exist.</value>
   </data>
   <data name="MessageErrorUpdatingRecord" xml:space="preserve">
     <value>An error occurred while trying to update the record.</value>
@@ -150,22 +156,40 @@
   <data name="MessageErrorUserPasswordUppercases" xml:space="preserve">
     <value>The password must have uppercase characters.</value>
   </data>
+  <data name="MessageNotEnoughMoney" xml:space="preserve">
+    <value>Not enough money to pay for drinks.</value>
+  </data>
+  <data name="MessageNotSufficientChange" xml:space="preserve">
+    <value>Not sufficient change in the inventory.</value>
+  </data>
   <data name="MessageSucccessRecordAdded" xml:space="preserve">
     <value>Record added successfully.</value>
   </data>
   <data name="MessageSucccessRecordUpdated" xml:space="preserve">
     <value>Record updated successfully.</value>
   </data>
-  <data name="MessajeSuccessListGenerated" xml:space="preserve">
+  <data name="MessageSuccessListGenerated" xml:space="preserve">
     <value>List generated.</value>
   </data>
-  <data name="MessajeSuccessRecordDeleted" xml:space="preserve">
+  <data name="MessageSuccessOrder" xml:space="preserve">
+    <value>Order complete.</value>
+  </data>
+  <data name="MessageSuccessRecordDeleted" xml:space="preserve">
     <value>Record deleted successfully.</value>
+  </data>
+  <data name="TitleChange" xml:space="preserve">
+    <value>CHANGE</value>
   </data>
   <data name="TitleCoinsInformation" xml:space="preserve">
     <value>COINS INFORMATION</value>
   </data>
+  <data name="TitleOrderSummary" xml:space="preserve">
+    <value>Order Summary</value>
+  </data>
   <data name="TitleProductsInformation" xml:space="preserve">
     <value>PRODUCTS INFORMATION</value>
+  </data>
+  <data name="TitlePurchasedProducts" xml:space="preserve">
+    <value>PURCHASED PRODUCTS</value>
   </data>
 </root>

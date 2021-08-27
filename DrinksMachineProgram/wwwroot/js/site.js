@@ -66,5 +66,75 @@ function validateData() {
 };
 
 $("#btnGetDrinks").click(function () {
+    let data = {
+        "Products": [],
+        "Coins": [],
+    };
 
+    $("[data-field='coin']").each(function (index) {
+        let coin = {
+            "Coin": {
+                "Id": $(`[name="Coins[${index}].Coin.Id"]`).val(),
+                "Name": $(`[name="Coins[${index}].Coin.Name"]`).val(),
+                "Value": $(`[name="Coins[${index}].Coin.Value"]`).val(),
+                "QuantityAvailable": $(`[name="Coins[${index}].Coin.QuantityAvailable"]`).val()
+            },
+            "Quantity": $(this).find("input").val()
+        }
+
+        data.Coins.push(coin);
+    });
+
+    $("[data-field='product']").each(function (index) {
+        let product = {
+            "Product": {
+                "Id": $(`[name="Products[${index}].Product.Id"]`).val(),
+                "Name": $(`[name="Products[${index}].Product.Name"]`).val(),
+                "Cost": $(`[name="Products[${index}].Product.Cost"]`).val(),
+                "QuantityAvailable": $(`[name="Products[${index}].Product.QuantityAvailable"]`).val()
+            },
+            "Quantity": $(this).find("input").val()
+        }
+
+        data.Products.push(product);
+    });
+
+    $.ajax({
+        type: "POST",
+        url: $("#DataForm").attr("action"),
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (response) {
+
+            if (response.Success) {
+                $("#ModalBody").html(response.Data);
+                $("#ModalWindow").modal("show");
+
+                var modal = document.getElementById('ModalWindow')
+
+                modal.addEventListener("hidden.bs.modal", function () {
+                    $.each(response.DataObject.Products, function (index, item) {
+                        $(`[name="Products[${index}].Product.QuantityAvailable"]`).val(item.Product.QuantityAvailable);
+                        $(`[name="Products[${index}].QuantityAvailable"]`).text(item.Product.QuantityAvailable);
+                        $(`[name="Products[${index}].Quantity"]`).val(0);
+                    });
+
+                    $.each(response.DataObject.Coins, function (index, item) {
+                        $(`[name="Coins[${index}].Coin.QuantityAvailable"]`).val(item.Coin.QuantityAvailable);
+                        $(`[name="Coins[${index}].Quantity"]`).val(0);
+                    });
+                })
+
+            }
+            else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: response.StatusMessaje,
+                })
+            }
+
+        }
+    })
 });

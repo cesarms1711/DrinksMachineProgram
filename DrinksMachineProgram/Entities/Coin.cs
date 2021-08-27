@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DrinksMachineProgram.Entities
 {
@@ -23,12 +24,11 @@ namespace DrinksMachineProgram.Entities
         [Range(0, short.MaxValue, ErrorMessage = "The quantity available must be greater than 0")]
         public short QuantityAvailable { get; set; }
 
+        [NotMapped]
+        public short QuantityReserved { get; set; }
+
         #endregion Properties
 
-        #region Methods
-
-
-        #endregion Methods
 
     }
 

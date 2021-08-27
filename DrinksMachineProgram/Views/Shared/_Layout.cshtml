@@ -7,6 +7,7 @@
     <!-- Libraries CSS Files -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.all.min.css" />
+    <link rel="stylesheet" href="~/lib/sweetalert/sweetalert2.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -36,18 +37,37 @@
         </nav>
     </header>
     <div class="container-md">
-        <main role="main" class="pb-3">
+        <main id="MainContent" role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+    <div id="ModalWindow" class="modal fade animated fadeIn" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Order Result</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div id="ModalBody" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-bs-dismiss="modal" aria-hidden="true">
+                        <span class="fa fa-check"></span> OK
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - GreenSlare - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - GreenSlare
         </div>
     </footer>
     <!-- JavaScript Libraries -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/sweetalert/sweetalert2.min.js"></script>
     <script src="~/js/site.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
