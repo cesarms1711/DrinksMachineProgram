@@ -1,0 +1,66 @@
+﻿@using DrinksMachineProgram.Authentication
+
+@inject IUserSession SessionUser
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Drinks Machine Program</title>
+    <!-- Libraries CSS Files -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/datatables/datatables.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.all.min.css" />
+    <link rel="stylesheet" href="~/lib/animate/animate.min.css">
+    <link rel="stylesheet" href="~/lib/sweetalert/sweetalert2.min.css">
+    <!-- Main Stylesheet File -->
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header class="mb-4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Drink Machine Program</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMainMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navMainMenu">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="@Url.Action("List", "Products")">
+                                <i class="fas fa-beer"></i> Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("List", "Coins")">
+                                <i class="fas fa-coins"></i> Coins
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#@Url.Action("List", "Users")">
+                                <i class="fas fa-users"></i> Users
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <span class="navbar-text">
+                    @(User.Identity.IsAuthenticated ? "Hello " + SessionUser.FirstName : "Session not started")
+                </span>
+            </div>
+        </nav>
+    </header>
+    <div class="content-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- JavaScript Libraries -->
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/datatables/datatables.min.js"></script>
+    <script src="~/lib/sweetalert/sweetalert2.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

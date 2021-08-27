@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "List of Coins";
+    Layout = "~/Views/Shared/_LayoutSettings.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>
+                    <i class="fa fa-plus-circle"></i> @ViewBag.Title
+                </h4>
+            </div>
+            <div class="card-body">
+                <div id="TableContainer">
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <button id="btnCreate" class="btn btn-success btn-sm" type="button" role="button">
+                    <i class="fa fa-plus"></i> New Coin
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ModalWindow" class="modal fade animated fadeIn" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div id="ModalContainer" class="modal-content">
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/common-functions-catalogues.js"></script>
+    <script type="text/javascript">
+
+        var dataForm = null;
+
+        $(function () {
+            dataForm = form();
+
+            dataForm.tableUrl = "@Url.Action("Table", "Coins")";
+            dataForm.createUrl = "@Url.Action("Create", "Coins")";
+            dataForm.editUrl = "@Url.Action("Edit", "Coins")";
+            dataForm.detailUrl = "@Url.Action("Detail", "Coins")";
+            dataForm.deleteUrl = "@Url.Action("Delete", "Coins")";
+
+            dataForm.deleteMessage = "Are you sure you want to delete the record?";
+            dataForm.yesMessage = "Yes";
+            dataForm.noMessage = "No";
+
+            dataForm.reloadList();
+
+            $("#btnCreate").click(function() {
+                dataForm.create();
+            });
+
+        });
+
+    </script>
+}

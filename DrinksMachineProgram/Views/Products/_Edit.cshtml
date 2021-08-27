@@ -1,0 +1,39 @@
+﻿@using DrinksMachineProgram.Entities
+@model Product
+
+<div class="modal-header">
+    <h4 class="modal-title">Edit Product</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+    <form id="DataForm" action="@Url.Action("Edit", "Products")">
+        @Html.GetValidationSummary()
+        @Html.HiddenFor(model => model.Id)
+        <div class="row mb-2" data-input="true">
+            @Html.GetLabelFor(model => model.Name, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetEditorFor(model => model.Name)
+            </div>
+        </div>
+        <div class="row mb-2" data-input="true">
+            @Html.GetLabelFor(model => model.Cost, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetEditorFor(model => model.Cost)
+            </div>
+        </div>
+        <div class="row mb-2" data-input="true">
+            @Html.GetLabelFor(model => model.QuantityAvailable, "col-sm-6")
+            <div class="col-sm-6">
+                @Html.GetEditorFor(model => model.QuantityAvailable)
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button id="SaveButton" class="btn btn-primary btn-sm" type="button">
+        <span class="fa fa-save"></span> Save
+    </button>
+    <button class="btn btn-danger btn-sm" data-bs-dismiss="modal" aria-hidden="true">
+        <span class="fa fa-ban"></span> Cancel
+    </button>
+</div>

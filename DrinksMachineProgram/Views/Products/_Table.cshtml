@@ -1,0 +1,32 @@
+﻿@using DrinksMachineProgram.Entities
+@model List<Product>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr scope="row">
+                <td class="text-center">@product.Id</td>
+                <td>@product.Name</td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="dataForm.detail(@product.Id);">
+                        <i id="btnBorrar" class="fa fa fa-search"></i> Detail
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="dataForm.edit(@product.Id);">
+                        <i id="btnBorrar" class="fa fa fa-edit"></i> Edit
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="dataForm.delete(@product.Id);">
+                        <i id="btnBorrar" class="fa fa fa-trash"></i> Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
