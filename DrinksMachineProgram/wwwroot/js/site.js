@@ -15,11 +15,9 @@ var availableDrinks = true;
 $("[data-field='product'] input").change(function () {
     let row = $(this).parent().data("row");
     let quantityAvailable = parseInt($(`[name="Products[${row}].Product.QuantityAvailable"]`).val());
-    let cost = parseInt($(`[name="Products[${row}].Product.Cost"]`).val());
     let quantity = parseInt($(this).val());
-    let total = quantity * cost;
 
-    $("#txtOrderTotal").text(total);
+    calculateTotal();
 
     availableDrinks = quantity <= quantityAvailable;
 
@@ -63,6 +61,20 @@ function validateData() {
         $("#btnGetDrinks").attr("disabled", true);
     }
 
+};
+
+function calculateTotal() {
+    let total = 0;
+
+    $("[data-field='product'] input").each(function () {
+        let row = $(this).parent().data("row");
+        let cost = parseInt($(`[name="Products[${row}].Product.Cost"]`).val());
+        let productQuantity = parseInt($(this).val());
+
+        total += productQuantity * cost;
+    });
+
+    $("#txtOrderTotal").text(total);
 };
 
 $("#btnGetDrinks").click(function () {
@@ -131,7 +143,7 @@ $("#btnGetDrinks").click(function () {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: response.StatusMessaje,
+                    text: response.ErrorMessage,
                 })
             }
 

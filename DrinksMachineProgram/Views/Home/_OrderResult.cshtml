@@ -14,7 +14,7 @@
                 Product product = Model.Products[i].Product;
                 <div class="row mb-3">
                     <div class="col">
-                        <label class="form-label fw-bold text-uppercase">@product.Name</label>
+                        <label class="form-label fw-bold text-uppercase mb-0">@product.Name</label>
                     </div>
                     <div class="col">
                         @Html.GetDisplayFor(model => model.Products[i].Quantity)
@@ -25,7 +25,7 @@
         <li class="list-group-item">
             <div class="row mb-3">
                 <div class="col">
-                    <label class="form-label fw-bold">Total: </label>
+                    <label class="form-label fw-bold mb-0">Total: </label>
                 </div>
                 <div class="col">
                     @Html.GetDisplayFor(model => model.Total)
@@ -33,7 +33,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col">
-                    <label class="form-label fw-bold">Pay: </label>
+                    <label class="form-label fw-bold mb-0">Pay: </label>
                 </div>
                 <div class="col">
                     @Html.GetDisplayFor(model => model.Pay)
@@ -41,7 +41,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col">
-                    <label class="form-label fw-bold">Change: </label>
+                    <label class="form-label fw-bold mb-0">Change: </label>
                 </div>
                 <div class="col">
                     @Html.GetDisplayFor(model => model.Change)
@@ -59,7 +59,7 @@
                     Coin coin = Model.Coins[i].Coin;
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="form-label fw-bold text-uppercase">@coin.Name</label>
+                            <label class="form-label fw-bold text-uppercase mb-0">@coin.Name</label>
                         </div>
                         <div class="col">
                             @Html.GetDisplayFor(model => model.Coins[i].Quantity)

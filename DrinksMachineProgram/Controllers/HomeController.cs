@@ -73,6 +73,7 @@ namespace DrinksMachineProgram.Controllers
         [HttpPost]
         public JsonResult GetDrinks([FromBody] OrderModel order)
         {
+            bool statusOk = false;
 
             if (ValidateProducts(ref order) && 
                 ValidatePay(ref order) && 
@@ -88,12 +89,14 @@ namespace DrinksMachineProgram.Controllers
                     .ToList()
                     .ForEach(c => CoinsBL.Instance.Edit(c.Coin));
 
-                order.StatusOk = true;
+                statusOk = true;
             }
 
             string view = GetView("_OrderResult", order);
 
-            return JsonResponses.GetSuccess(Resources.TextResources.MessageSuccessOrder, view, order);
+            return statusOk ? 
+                JsonResponses.GetSuccess(TextResources.MessageSuccessOrder, view, order) :
+                JsonResponses.GetError(order.StatusMessaje);
         }
 
         public IActionResult Privacy()
@@ -155,7 +158,6 @@ namespace DrinksMachineProgram.Controllers
             {
                 RestoreProducts(ref order);
 
-                order.StatusOk = false;
                 order.StatusMessaje = TextResources.MessageErrorDrinkSoldOut;
 
                 return false;
@@ -177,7 +179,6 @@ namespace DrinksMachineProgram.Controllers
             {
                 RestoreProducts(ref order);
 
-                order.StatusOk = false;
                 order.StatusMessaje = TextResources.MessageNotEnoughMoney;
 
                 return false;
@@ -220,7 +221,6 @@ namespace DrinksMachineProgram.Controllers
                 RestoreProducts(ref order);
                 RestoreCoins(ref order);
 
-                order.StatusOk = false;
                 order.StatusMessaje = TextResources.MessageNotSufficientChange;
 
                 return false;

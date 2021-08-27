@@ -37,7 +37,7 @@ namespace DrinksMachineProgram.Controllers
 
             string view = GetView("../Coins/_Table", coins);
 
-            return JsonResponses.GetSuccess(TextResources.MessajeSuccessListGenerated, view);
+            return JsonResponses.GetSuccess(TextResources.MessageSuccessListGenerated, view);
         }
 
         // GET: /Coins/Detail/5
@@ -130,7 +130,7 @@ namespace DrinksMachineProgram.Controllers
             {
                 EntityBL.Delete(coin.Id);
 
-                return JsonResponses.GetSuccess(TextResources.MessajeSuccessRecordDeleted);
+                return JsonResponses.GetSuccess(TextResources.MessageSuccessRecordDeleted);
             }
             catch (Exception)
             {

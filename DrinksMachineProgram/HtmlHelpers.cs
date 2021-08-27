@@ -55,7 +55,7 @@ namespace DrinksMachineProgram
         {
             object htmlAttributes = new
             {
-                @class = "form-control-plaintext",
+                @class = "form-control-plaintext p-0",
                 @readonly = "true"
             };
 

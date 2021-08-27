@@ -41,7 +41,7 @@ namespace DrinksMachineProgram.Controllers
 
             string view = GetView("../Users/_Table", users);
 
-            return JsonResponses.GetSuccess(TextResources.MessajeSuccessListGenerated, view);
+            return JsonResponses.GetSuccess(TextResources.MessageSuccessListGenerated, view);
         }
 
         // GET: /Users/Detail/5
@@ -190,7 +190,7 @@ namespace DrinksMachineProgram.Controllers
             {
                 EntityBL.Delete(user.Id);
 
-                return JsonResponses.GetSuccess(TextResources.MessajeSuccessRecordDeleted);
+                return JsonResponses.GetSuccess(TextResources.MessageSuccessRecordDeleted);
             }
             catch (Exception)
             {
